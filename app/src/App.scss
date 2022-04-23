@@ -31,9 +31,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    .prefecture-checkbox {
-      margin: 3px;
-    }
 
     input[type='checkbox'] {
       display: none;
@@ -46,6 +43,13 @@ body {
     }
 
     label {
+      margin: 3px;
+      &:hover {
+        color: #0f939f;
+      }
+    }
+
+    .button {
       background-color: #eeeeee;
       border-radius: 3px;
       color: black;
@@ -55,27 +59,14 @@ body {
       padding: 5px 10px;
       text-align: center;
       width: 80px;
-    }
-
-    label:hover {
-      color: #0f939f;
     }
 
     .clear-button {
-      background-color: #eeeeee;
-      border-radius: 3px;
-      color: black;
-      cursor: pointer;
-      display: block;
-      font-size: 14px;
-      padding: 5px 10px;
-      text-align: center;
-      width: 80px;
       margin: 3px;
-    }
-    .clear-button:hover {
-      background-color: #0f939f;
-      color: white;
+      &:hover {
+        background-color: #0f939f;
+        color: white;
+      }
     }
   }
 }

@@ -29,7 +29,7 @@ const Prefectures: FC<PrefecturesProps> = ({
               handleChecked={handleChecked}
             />
           ))}
-        <span className="clear-button" onClick={handleAllClear}>
+        <span className="button clear-button" onClick={handleAllClear}>
           クリア
         </span>
       </div>
