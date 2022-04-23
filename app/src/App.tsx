@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import Layout from './components/layout/Layout';
+import Prefectures from './components/prefecture/Prefectures';
+import { useGetPrefectures, useGetPopulationValue } from './hooks/prefecutre';
+import PopulationChart from './components/charts/PopulationChart';
+import './App.scss';
 
-function App() {
+const App: FC = () => {
+  const { prefectures } = useGetPrefectures();
+  const { populationValueList, checkedPrefList, handleChecked } = useGetPopulationValue();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Prefectures prefectures={prefectures} handleChecked={handleChecked} />
+      <PopulationChart populationValue={populationValueList} checkedPrefList={checkedPrefList} />
+    </Layout>
   );
-}
+};
 
 export default App;
