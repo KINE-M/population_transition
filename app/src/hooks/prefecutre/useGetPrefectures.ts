@@ -20,8 +20,11 @@ const useGetPrefectures = () => {
         }
       );
       setPrefectures(data.result);
-      // Todo エラー処理
-    } catch (e) {}
+    } catch (e) {
+      if (axios.isAxiosError(e) && e.response && e.response.status === 400) {
+        throw new Error(e.message);
+      }
+    }
   };
 
   return { prefectures };
