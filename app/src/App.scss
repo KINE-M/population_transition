@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.prefectures-box {
+  width: 100%;
+  margin: 0 auto;
+
+  .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .text {
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .prefectures-list {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .prefecture-checkbox {
+      margin: 3px;
+    }
+
+    input[type='checkbox'] {
+      display: none;
+    }
+
+    input[type='checkbox']:checked + label {
+      background-color: #0f939f;
+      color: #ffffff;
+      width: 80px;
+    }
+
+    label {
+      background-color: #eeeeee;
+      border-radius: 3px;
+      color: black;
+      cursor: pointer;
+      display: block;
+      font-size: 14px;
+      padding: 5px 10px;
+      text-align: center;
+      width: 80px;
+    }
+
+    label:hover {
+      color: #0f939f;
+    }
+  }
+}
+
+.chart-box {
+  width: 100%;
+  margin: 0 auto;
+
+  .chart {
+    margin: 20px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .main {
+    width: 100%;
+    max-width: 1080px;
+    flex-direction: row;
+  }
+
+  .prefectures-box {
+    width: 40%;
+  }
+
+  .chart-box {
+    width: 60%;
+  }
+}
