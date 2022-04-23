@@ -11,7 +11,7 @@ const Prefectures: FC<PrefecturesProps> = ({ prefectures, handleChecked }) => {
   return (
     <div className="prefectures-box">
       <h1 className="title">都道府県別 総人口推移グラフ</h1>
-      <p className="text">選択した都道府県の人口推移が表示されます。</p>
+      <p className="text">選択した都道府県の人口推移のグラフが表示されます。</p>
       <div className="prefectures-list">
         {prefectures &&
           prefectures.map((pref) => (
