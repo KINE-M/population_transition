@@ -22,7 +22,9 @@ const PopulationChart: FC<PopulationChartProps> = ({ populationValue, checkedPre
         data={populationValue}
       >
         {checkedPrefList &&
-          checkedPrefList.map((item) => <Line key={item[1]} type="monotone" dataKey={item[1]} />)}
+          checkedPrefList.map((item) => (
+            <Line key={item[1]} type="monotone" dataKey={item[1]} stroke={randomColorHex()} />
+          ))}
         <XAxis
           dataKey="year"
           label={{ value: '年度', angle: 0, position: 'insideBottomRight', offset: -15 }}
