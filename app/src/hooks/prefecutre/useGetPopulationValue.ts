@@ -30,28 +30,14 @@ const useGetPopulationValue = () => {
       const result = data.result.data[0].data;
 
       if (!result.length) {
-        setPolupationValueList([]);
         return;
       }
 
-      // Todo リファクタリング
-      // 人口構成情報を初めて取得するとき(populationValueが空の場合)
-      const newPolulationValueList = [];
-      if (!populationValueList.length) {
-        for (let i = 0; i < result.length; i++) {
-          let temp: any = {};
-          temp = { ...result[i] };
-          temp[prefName] = result[i].value;
-          delete temp.value;
-          newPolulationValueList.push(temp);
-        }
+      let newPolulationValueList = [];
+      if (populationValueList.length) {
+        newPolulationValueList = mergePolupationValue(prefName, result, populationValueList);
       } else {
-        for (let i = 0; i < result.length; i++) {
-          let temp: any = {};
-          temp = { ...populationValueList[i] };
-          temp[prefName] = result[i].value;
-          newPolulationValueList.push(temp);
-        }
+        newPolulationValueList = mergePolupationValue(prefName, result);
       }
       setPolupationValueList(newPolulationValueList);
     } catch (e) {
@@ -59,6 +45,24 @@ const useGetPopulationValue = () => {
         throw new Error(e.message);
       }
     }
+  };
+
+  const mergePolupationValue = (name: string, newList: any, oldList: any = []) => {
+    const mergeList = [];
+    for (let i = 0; i < newList.length; i++) {
+      let temp: any = {};
+      if (oldList.length) {
+        temp = { ...oldList[i] };
+      } else {
+        temp = { ...newList[i] };
+      }
+      temp[name] = newList[i].value;
+      if (!oldList.length) {
+        delete temp.value;
+      }
+      mergeList.push(temp);
+    }
+    return mergeList;
   };
 
   const deleteTargetPopulationValue = (prefName: string) => {
