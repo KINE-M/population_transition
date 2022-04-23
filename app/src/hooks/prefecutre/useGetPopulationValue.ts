@@ -71,7 +71,12 @@ const useGetPopulationValue = () => {
     }
   };
 
-  return { populationValueList, checkedPrefList, handleChecked };
+  const handleAllClear = () => {
+    setCheckedPrefList([]);
+    setPolupationValueList([]);
+  };
+
+  return { populationValueList, checkedPrefList, handleChecked, handleAllClear };
 };
 
 export default useGetPopulationValue;

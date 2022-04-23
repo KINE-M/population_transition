@@ -4,10 +4,17 @@ import type { Prefecture } from '../../types/prefecture';
 
 interface PrefecturesProps {
   prefectures: Prefecture[];
+  checkedPrefList: any[];
   handleChecked: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAllClear: () => void;
 }
 
-const Prefectures: FC<PrefecturesProps> = ({ prefectures, handleChecked }) => {
+const Prefectures: FC<PrefecturesProps> = ({
+  prefectures,
+  checkedPrefList,
+  handleChecked,
+  handleAllClear,
+}) => {
   return (
     <div className="prefectures-box">
       <h1 className="title">都道府県別 総人口推移グラフ</h1>
@@ -17,10 +24,14 @@ const Prefectures: FC<PrefecturesProps> = ({ prefectures, handleChecked }) => {
           prefectures.map((pref) => (
             <PrefectureCheckBox
               prefecture={pref}
+              checkedPrefList={checkedPrefList}
               key={pref.prefCode.toLocaleString()}
               handleChecked={handleChecked}
             />
           ))}
+        <span className="clear-button" onClick={handleAllClear}>
+          クリア
+        </span>
       </div>
     </div>
   );

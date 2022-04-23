@@ -3,10 +3,15 @@ import { Prefecture } from '../../types/prefecture';
 
 interface PrefectureCheckBoxProps {
   prefecture: Prefecture;
+  checkedPrefList: any[];
   handleChecked: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PrefectureCheckBox: FC<PrefectureCheckBoxProps> = ({ prefecture, handleChecked }) => {
+const PrefectureCheckBox: FC<PrefectureCheckBoxProps> = ({
+  prefecture,
+  checkedPrefList,
+  handleChecked,
+}) => {
   return (
     <div className="prefecture-checkbox">
       <input
@@ -15,6 +20,7 @@ const PrefectureCheckBox: FC<PrefectureCheckBoxProps> = ({ prefecture, handleChe
         type="checkbox"
         name={prefecture.prefName}
         value={prefecture.prefCode}
+        checked={checkedPrefList.some((val) => val[0] === prefecture.prefCode)}
         onChange={handleChecked}
       />
       <label htmlFor={`prefecture-${prefecture.prefCode.toLocaleString()}`}>

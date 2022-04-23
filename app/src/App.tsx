@@ -7,11 +7,17 @@ import './App.scss';
 
 const App: FC = () => {
   const { prefectures } = useGetPrefectures();
-  const { populationValueList, checkedPrefList, handleChecked } = useGetPopulationValue();
+  const { populationValueList, checkedPrefList, handleChecked, handleAllClear } =
+    useGetPopulationValue();
 
   return (
     <Layout>
-      <Prefectures prefectures={prefectures} handleChecked={handleChecked} />
+      <Prefectures
+        prefectures={prefectures}
+        checkedPrefList={checkedPrefList}
+        handleChecked={handleChecked}
+        handleAllClear={handleAllClear}
+      />
       <PopulationChart populationValue={populationValueList} checkedPrefList={checkedPrefList} />
     </Layout>
   );
