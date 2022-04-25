@@ -53,24 +53,6 @@ const useGetPopulationValue = () => {
     }
   };
 
-  const mergePolupationValue = (name: string, newList: any, oldList: any = []) => {
-    const mergeList = [];
-    for (let i = 0; i < newList.length; i++) {
-      let temp: any = {};
-      if (oldList.length) {
-        temp = { ...oldList[i] };
-      } else {
-        temp = { ...newList[i] };
-      }
-      temp[name] = newList[i].value;
-      if (!oldList.length) {
-        delete temp.value;
-      }
-      mergeList.push(temp);
-    }
-    return mergeList;
-  };
-
   const deleteTargetPopulationValue = (prefName: string) => {
     for (let i = 0; i < populationValueList.length; i++) {
       delete populationValueList[i][prefName];
@@ -83,6 +65,24 @@ const useGetPopulationValue = () => {
   };
 
   return { populationValueList, checkedPrefList, handleChecked, handleAllClear };
+};
+
+const mergePolupationValue = (name: string, newList: any, oldList: any = []) => {
+  const mergedList = [];
+  for (let i = 0; i < newList.length; i++) {
+    let temp: any = {};
+    if (oldList.length) {
+      temp = { ...oldList[i] };
+    } else {
+      temp = { ...newList[i] };
+    }
+    temp[name] = newList[i].value;
+    if (!oldList.length) {
+      delete temp.value;
+    }
+    mergedList.push(temp);
+  }
+  return mergedList;
 };
 
 export default useGetPopulationValue;
