@@ -13,12 +13,12 @@ const useGetPopulationValue = () => {
       setCheckedPrefList(checkedPrefList.filter((val) => val.prefCode !== prefCode));
       deleteTargetPopulationValue(prefName);
     } else {
-      setCheckedPrefList([...checkedPrefList, {prefCode, prefName}]);
-      getPopulation(prefCode, prefName);
+      setCheckedPrefList([...checkedPrefList, { prefCode, prefName }]);
+      getPopulationValue(prefCode, prefName);
     }
   };
 
-  const getPopulation = async (prefCode: number, prefName: string) => {
+  const getPopulationValue = async (prefCode: number, prefName: string) => {
     try {
       const { data } = await axios.get(
         process.env.REACT_APP_RESAS_ENDPOINT + '/api/v1/population/composition/perYear',
@@ -28,17 +28,22 @@ const useGetPopulationValue = () => {
         }
       );
 
-      const result = data.result.data[0].data;
+      const resPopulationValue = data.result.data[0].data;
 
-      if (!result.length) {
+      if (!resPopulationValue.length) {
+        setCheckedPrefList(checkedPrefList.filter((val) => val.prefCode !== prefCode));
         return;
       }
 
       let newPolulationValueList = [];
       if (populationValueList.length) {
-        newPolulationValueList = mergePolupationValue(prefName, result, populationValueList);
+        newPolulationValueList = mergePolupationValue(
+          prefName,
+          resPopulationValue,
+          populationValueList
+        );
       } else {
-        newPolulationValueList = mergePolupationValue(prefName, result);
+        newPolulationValueList = mergePolupationValue(prefName, resPopulationValue);
       }
       setPolupationValueList(newPolulationValueList);
     } catch (e) {
