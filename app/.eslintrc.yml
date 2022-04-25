@@ -16,6 +16,8 @@ plugins:
   - react
   - '@typescript-eslint'
 settings:
+  react:
+    version: detect
   import/resolver:
     node:
       extensions: [.ts, .tsx, .js, .jsx]

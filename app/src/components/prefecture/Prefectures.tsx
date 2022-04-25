@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import { FC, ChangeEvent } from 'react';
 import PrefectureCheckBox from '../prefecture/PrefectureCheckBox';
 import type { Prefecture } from '../../types/prefecture';
 
 interface PrefecturesProps {
   prefectures: Prefecture[];
   checkedPrefList: Prefecture[];
-  handleChecked: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChecked: (event: ChangeEvent<HTMLInputElement>) => void;
   handleAllClear: () => void;
 }
 
