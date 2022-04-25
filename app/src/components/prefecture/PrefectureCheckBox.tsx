@@ -3,7 +3,7 @@ import { Prefecture } from '../../types/prefecture';
 
 interface PrefectureCheckBoxProps {
   prefecture: Prefecture;
-  checkedPrefList: any[];
+  checkedPrefList: Prefecture[];
   handleChecked: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

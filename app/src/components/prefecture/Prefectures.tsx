@@ -4,7 +4,7 @@ import type { Prefecture } from '../../types/prefecture';
 
 interface PrefecturesProps {
   prefectures: Prefecture[];
-  checkedPrefList: any[];
+  checkedPrefList: Prefecture[];
   handleChecked: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleAllClear: () => void;
 }
