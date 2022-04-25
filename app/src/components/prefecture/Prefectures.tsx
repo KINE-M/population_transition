@@ -19,9 +19,9 @@ const Prefectures: FC<PrefecturesProps> = ({
     <div className="prefectures-box">
       <h1 className="title">都道府県別 総人口推移グラフ</h1>
       <p className="text">選択した都道府県の人口推移のグラフが表示されます。</p>
-      <div className="prefectures-list">
-        {prefectures &&
-          prefectures.map((pref) => (
+      {prefectures.length ? (
+        <div className="prefectures-list">
+          {prefectures.map((pref) => (
             <PrefectureCheckBox
               prefecture={pref}
               isChecked={checkedPrefList.some((val) => val.prefCode === pref.prefCode)}
@@ -29,10 +29,13 @@ const Prefectures: FC<PrefecturesProps> = ({
               handleChecked={handleChecked}
             />
           ))}
-        <span className="button clear-button" onClick={handleAllClear}>
-          クリア
-        </span>
-      </div>
+          <span className="button clear-button" onClick={handleAllClear}>
+            クリア
+          </span>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
