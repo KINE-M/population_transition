@@ -9,10 +9,11 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from 'recharts';
+import type {Prefecture} from '../../types/prefecture';
 
 interface PopulationChartProps {
   populationValue: any;
-  checkedPrefList: any[][];
+  checkedPrefList: Prefecture[];
 }
 
 const PopulationChart: FC<PopulationChartProps> = ({ populationValue, checkedPrefList }) => {
@@ -33,7 +34,7 @@ const PopulationChart: FC<PopulationChartProps> = ({ populationValue, checkedPre
           >
             {checkedPrefList &&
               checkedPrefList.map((item) => (
-                <Line key={item[1]} type="monotone" dataKey={item[1]} stroke={randomColorHex()} />
+                <Line key={item.prefCode} type="monotone" dataKey={item.prefName} stroke={randomColorHex()} />
               ))}
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis

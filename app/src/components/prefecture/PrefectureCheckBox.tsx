@@ -20,7 +20,7 @@ const PrefectureCheckBox: FC<PrefectureCheckBoxProps> = ({
         type="checkbox"
         name={prefecture.prefName}
         value={prefecture.prefCode}
-        checked={checkedPrefList.some((val) => val[0] === prefecture.prefCode)}
+        checked={checkedPrefList.some((val) => val.prefCode === prefecture.prefCode)}
         onChange={handleChecked}
       />
       <label className="button" htmlFor={`prefecture-${prefecture.prefCode.toLocaleString()}`}>

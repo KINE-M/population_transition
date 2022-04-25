@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import type { Prefecture } from '../../types/prefecture';
 
 const useGetPopulationValue = () => {
   const [populationValueList, setPolupationValueList] = useState<any[]>([]);
-  const [checkedPrefList, setCheckedPrefList] = useState<any[][]>([]);
+  const [checkedPrefList, setCheckedPrefList] = useState<Prefecture[]>([]);
 
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const prefId = Number(e.target.value);
+    const prefCode = Number(e.target.value);
     const prefName = e.target.name;
-    if (checkedPrefList.some((val) => val.includes(prefId))) {
-      setCheckedPrefList(checkedPrefList.filter((val) => val[0] !== prefId));
+    if (checkedPrefList.some((val) => val.prefCode === prefCode)) {
+      setCheckedPrefList(checkedPrefList.filter((val) => val.prefCode !== prefCode));
       deleteTargetPopulationValue(prefName);
     } else {
-      setCheckedPrefList([...checkedPrefList, [prefId, prefName]]);
-      getPopulation(prefId, prefName);
+      setCheckedPrefList([...checkedPrefList, {prefCode, prefName}]);
+      getPopulation(prefCode, prefName);
     }
   };
 
-  const getPopulation = async (id: number, prefName: string) => {
+  const getPopulation = async (prefCode: number, prefName: string) => {
     try {
       const { data } = await axios.get(
         process.env.REACT_APP_RESAS_ENDPOINT + '/api/v1/population/composition/perYear',
         {
-          params: { prefCode: id },
+          params: { prefCode },
           headers: { 'X-API-KEY': `${process.env.REACT_APP_RESAS_API_KEY}` },
         }
       );
