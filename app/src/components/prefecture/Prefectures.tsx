@@ -24,7 +24,7 @@ const Prefectures: FC<PrefecturesProps> = ({
           prefectures.map((pref) => (
             <PrefectureCheckBox
               prefecture={pref}
-              checkedPrefList={checkedPrefList}
+              isChecked={checkedPrefList.some((val) => val.prefCode === pref.prefCode)}
               key={pref.prefCode.toLocaleString()}
               handleChecked={handleChecked}
             />

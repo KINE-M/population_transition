@@ -3,13 +3,13 @@ import { Prefecture } from '../../types/prefecture';
 
 interface PrefectureCheckBoxProps {
   prefecture: Prefecture;
-  checkedPrefList: Prefecture[];
+  isChecked: boolean;
   handleChecked: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const PrefectureCheckBox: FC<PrefectureCheckBoxProps> = ({
   prefecture,
-  checkedPrefList,
+  isChecked,
   handleChecked,
 }) => {
   return (
@@ -20,7 +20,7 @@ const PrefectureCheckBox: FC<PrefectureCheckBoxProps> = ({
         type="checkbox"
         name={prefecture.prefName}
         value={prefecture.prefCode}
-        checked={checkedPrefList.some((val) => val.prefCode === prefecture.prefCode)}
+        checked={isChecked}
         onChange={handleChecked}
       />
       <label className="button" htmlFor={`prefecture-${prefecture.prefCode.toLocaleString()}`}>

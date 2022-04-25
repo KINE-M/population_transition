@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 import type { Prefecture } from '../../types/prefecture';
 
@@ -6,17 +6,20 @@ const useGetPopulationValue = () => {
   const [populationValueList, setPolupationValueList] = useState<any[]>([]);
   const [checkedPrefList, setCheckedPrefList] = useState<Prefecture[]>([]);
 
-  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const prefCode = Number(e.target.value);
-    const prefName = e.target.name;
-    if (checkedPrefList.some((val) => val.prefCode === prefCode)) {
-      setCheckedPrefList(checkedPrefList.filter((val) => val.prefCode !== prefCode));
-      deleteTargetPopulationValue(prefName);
-    } else {
-      setCheckedPrefList([...checkedPrefList, { prefCode, prefName }]);
-      getPopulationValue(prefCode, prefName);
-    }
-  };
+  const handleChecked = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const prefCode = Number(e.target.value);
+      const prefName = e.target.name;
+      if (checkedPrefList.some((val) => val.prefCode === prefCode)) {
+        setCheckedPrefList(checkedPrefList.filter((val) => val.prefCode !== prefCode));
+        deleteTargetPopulationValue(prefName);
+      } else {
+        setCheckedPrefList([...checkedPrefList, { prefCode, prefName }]);
+        getPopulationValue(prefCode, prefName);
+      }
+    },
+    [checkedPrefList, populationValueList]
+  );
 
   const getPopulationValue = async (prefCode: number, prefName: string) => {
     try {
@@ -59,10 +62,10 @@ const useGetPopulationValue = () => {
     }
   };
 
-  const handleAllClear = () => {
+  const handleAllClear = useCallback(() => {
     setCheckedPrefList([]);
     setPolupationValueList([]);
-  };
+  }, []);
 
   return { populationValueList, checkedPrefList, handleChecked, handleAllClear };
 };
