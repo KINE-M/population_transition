@@ -20,42 +20,10 @@
   - sass
   - api → RESAS 地域経済分析システムの api を利用しています。
 
-# 使い方
+# URL
+
+下記アドレスからアプリを表示できます。
 
 ```
-git clone https://github.com/KINE-M/population_transition.git
-cd population_transition
-```
-
-app 配下の.env.sample をファイルをコピーし、.env ファイルを作成
-
-.env ファイルは下記の内容になります。
-
-```
-
-REACT_APP_RESAS_ENDPOINT = 'https://opendata.resas-portal.go.jp'
-
-REACT_APP_RESAS_API_KEY = '取得した API キー'
-
-```
-
-API キーが必須となります。
-API キーの取得は下記アドレスとなります。
-
-```
-https://opendata.resas-portal.go.jp/
-```
-
-Docker イメージを作成し起動します。
-
-```
-docker compose up -d --build
-```
-
-- 下記アドレスにアクセス（docker compose の build 後起動するまでに少し時間がかかります。）
-
-```
-
-http://localhost:3000
-
+https://kine-m.github.io/population_transition/
 ```
