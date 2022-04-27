@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = memo(({ children }: { children: ReactNode }) => {
   return <div className="main">{children}</div>;
-};
+});
 
 export default Layout;

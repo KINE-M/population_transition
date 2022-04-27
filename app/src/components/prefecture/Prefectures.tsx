@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react';
+import { FC, ChangeEvent, memo } from 'react';
 import PrefectureCheckBox from '../prefecture/PrefectureCheckBox';
 import type { Prefecture } from '../../types/prefecture';
 
@@ -9,35 +9,34 @@ interface PrefecturesProps {
   handleAllClear: () => void;
 }
 
-const Prefectures: FC<PrefecturesProps> = ({
-  prefectures,
-  checkedPrefList,
-  handleChecked,
-  handleAllClear,
-}) => {
-  return (
-    <div className="prefectures-box">
-      <h1 className="title">都道府県別 総人口推移グラフ</h1>
-      <p className="text">選択した都道府県の人口推移のグラフが表示されます。</p>
-      {prefectures.length ? (
-        <div className="prefectures-list">
-          {prefectures.map((pref) => (
-            <PrefectureCheckBox
-              prefecture={pref}
-              isChecked={checkedPrefList.some((val) => val.prefCode === pref.prefCode)}
-              key={pref.prefCode.toLocaleString()}
-              handleChecked={handleChecked}
-            />
-          ))}
-          <span className="button clear-button" onClick={handleAllClear}>
-            クリア
-          </span>
-        </div>
-      ) : (
-        <></>
-      )}
-    </div>
-  );
-};
+const Prefectures: FC<PrefecturesProps> = memo(
+  ({ prefectures, checkedPrefList, handleChecked, handleAllClear }) => {
+    console.log('prefectures');
+
+    return (
+      <div className="prefectures-box">
+        <h1 className="title">都道府県別 総人口推移グラフ</h1>
+        <p className="text">選択した都道府県の人口推移のグラフが表示されます。</p>
+        {prefectures.length ? (
+          <div className="prefectures-list">
+            {prefectures.map((pref) => (
+              <PrefectureCheckBox
+                prefecture={pref}
+                isChecked={checkedPrefList.some((val) => val.prefCode === pref.prefCode)}
+                key={pref.prefCode.toLocaleString()}
+                handleChecked={handleChecked}
+              />
+            ))}
+            <span className="button clear-button" onClick={handleAllClear}>
+              クリア
+            </span>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+    );
+  }
+);
 
 export default Prefectures;

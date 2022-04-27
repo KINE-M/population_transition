@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import Layout from './components/layout/Layout';
 import Prefectures from './components/prefecture/Prefectures';
 import { useGetPrefectures, useGetPopulationValue } from './hooks/prefecutre';
 import PopulationChart from './components/charts/PopulationChart';
 import './App.scss';
 
-const App: FC = () => {
+const App: FC = memo(() => {
   const { prefectures } = useGetPrefectures();
   const { populationValueList, checkedPrefList, handleChecked, handleAllClear } =
     useGetPopulationValue();
@@ -21,6 +21,6 @@ const App: FC = () => {
       <PopulationChart populationValue={populationValueList} checkedPrefList={checkedPrefList} />
     </Layout>
   );
-};
+});
 
 export default App;
