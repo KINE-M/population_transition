@@ -11,8 +11,6 @@ interface PrefecturesProps {
 
 const Prefectures: FC<PrefecturesProps> = memo(
   ({ prefectures, checkedPrefList, handleChecked, handleAllClear }) => {
-    console.log('prefectures');
-
     return (
       <div className="prefectures-box">
         <h1 className="title">都道府県別 総人口推移グラフ</h1>
